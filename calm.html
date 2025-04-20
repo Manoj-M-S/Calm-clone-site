@@ -1,0 +1,2302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <title>Calm Clone - Full Page</title>
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #fff; /* Default body background */
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .container-wellness {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body,
+      html {
+        font-family: "Helvetica Neue", sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      .navbar {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        padding: 20px 40px !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s ease;
+        background-color: transparent;
+      }
+
+      .navbar.scrolled {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-left,
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .nav-left img {
+        height: 40px;
+        border-radius: 12px;
+      }
+
+      .nav-link {
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .navbar.scrolled .nav-link {
+        color: #1f2937;
+      }
+
+      .cta-button {
+        background: #fff;
+        color: #000000;
+        font-weight: bold;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s, opacity 0.3s;
+      }
+
+      .navbar.scrolled .cta-button {
+        background: linear-gradient(90deg, #3f6ef3, #7f55ea);
+        color: #fff;
+      }
+
+      .hero {
+        background-image: url("/jasper-lake-hero-banner.webp");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        height: 100vh;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 120px;
+        position: relative;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0) 0%,
+          white 100%
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 700px;
+        padding: 0 20px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+        color: #1f2937;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 18px;
+        color: #4b5563;
+        margin-bottom: 30px;
+      }
+      /* Header/Navbar */
+      #navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 15px 0;
+        z-index: 1000;
+        transition: background-color 0.4s ease, color 0.4s ease,
+          box-shadow 0.4s ease;
+        background-color: transparent;
+        color: #fff;
+      }
+      #navbar .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-size: 1.8em;
+        font-weight: bold;
+        background: linear-gradient(to bottom right, #a7c7e7, #6a5acd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        padding: 5px 10px;
+        border-radius: 8px;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+      nav a {
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+      nav a:hover {
+        color: #ccc;
+      }
+      .cta-button-nav {
+        background-color: #fff;
+        color: #333;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        margin-left: 20px;
+        font-size: 0.9em;
+      }
+      .cta-button-nav:hover {
+        background-color: #eee;
+      }
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: inherit;
+        font-size: 2em;
+        cursor: pointer;
+        margin-left: 15px;
+      }
+
+      /* Navbar Scrolled State */
+      #navbar.scrolled {
+        background-color: #fff;
+        color: #333;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      #navbar.scrolled nav a {
+        color: #555;
+      }
+      #navbar.scrolled nav a:hover {
+        color: #000;
+      }
+      #navbar.scrolled .cta-button-nav {
+        background-color: #6a5acd;
+        color: #fff;
+      }
+      #navbar.scrolled .cta-button-nav:hover {
+        background-color: #5a4ab5;
+      }
+      #navbar.scrolled .menu-toggle {
+        color: #333;
+      }
+      #navbar.scrolled .logo {
+        background: linear-gradient(to bottom right, #a7c7e7, #6a5acd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 1vh;
+        min-height: 500px;
+        background-image: url("https://www.calm.com/_next/image?url=%2F_n%2Fimages%2Fhomepage%2Fjasper-lake-hero-banner.webp&w=1920&q=75");
+
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      /* Calm Your Mind Section */
+      .calm-mind-section {
+        background-color: #ffffff;
+        padding: 80px 0;
+        text-align: center;
+      }
+      .calm-mind-section .content-wrapper {
+        max-width: 1168px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .calm-mind-section h2 {
+        font-size: 2.8em;
+        font-weight: 700;
+        color: #1f3a93;
+        margin-bottom: 25px;
+        line-height: 1.2;
+      }
+      .calm-mind-section p {
+        font-size: 1.1em;
+        color: #5f6368;
+        line-height: 1.7;
+        margin-bottom: 40px;
+      }
+      .cta-button-gradient {
+        display: inline-block;
+        padding: 18px 45px;
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #fff;
+        background: linear-gradient(to right, #5c86ec, #3e63b8);
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .cta-button-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(62, 99, 184, 0.4);
+      }
+
+      /* Wellness Section */
+      .wellness-section {
+        background-color: #f8f9fa;
+        padding: 60px 0 80px 0;
+      }
+      .wellness-section h1 {
+        text-align: center;
+        color: #1e3a69;
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+        font-weight: 600;
+      }
+      .wellness-cards {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+      }
+      .wellness-section .card {
+        flex: 1;
+        min-width: 280px;
+        max-width: 350px;
+        text-align: center;
+        padding: 20px 15px;
+      }
+      .wellness-section .icon {
+        margin-bottom: 25px;
+        display: inline-block;
+      }
+      .wellness-section .card h2 {
+        font-size: 1.6rem;
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+      .wellness-section .card p {
+        color: #5f6368;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        padding: 0 10px;
+      }
+      .wellness-section .learn-more {
+        color: #333;
+        text-decoration: underline;
+        font-size: 1rem;
+        font-weight: 500;
+        display: inline-block;
+      }
+      .wellness-section .learn-more:hover {
+        color: #000;
+        text-decoration-thickness: 2px;
+      }
+
+      /* Testimonial Carousel Section */
+      .testimonial-section {
+        background-color: #f0f6ff;
+        padding: 80px 0;
+        overflow: hidden;
+        position: relative;
+      }
+      .testimonial-section .carousel-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+        text-align: center;
+        position: relative;
+      }
+      .testimonial-section .heading {
+        color: #1a4677;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 50px;
+      }
+      .testimonial-section .carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 25px;
+        position: relative;
+        padding: 10px 0 20px 0;
+        margin-bottom: 30px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .testimonial-section .carousel::-webkit-scrollbar {
+        display: none;
+      }
+      .testimonial-section .testimonial {
+        flex-shrink: 0;
+        width: calc(33.333% - (25px * 2 / 3));
+        min-width: 280px;
+        height: auto;
+        min-height: 400px;
+        background: linear-gradient(180deg, #2d73b0 0%, #4470c4 100%);
+        border-radius: 20px;
+        padding: 35px 30px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      .testimonial-section .quote-mark {
+        font-family: serif;
+        font-size: 100px;
+        font-weight: bold;
+        line-height: 0;
+        position: absolute;
+        top: 45px;
+        left: 25px;
+        opacity: 0.2;
+        color: #b3c9e9;
+        z-index: 1;
+      }
+      .testimonial-section .testimonial-content {
+        position: relative;
+        z-index: 2;
+        margin-top: 50px;
+        text-align: left;
+      }
+      .testimonial-section .testimonial-text {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
+      .testimonial-section .testimonial-author-info {
+        margin-top: auto;
+        padding-top: 20px;
+        text-align: left;
+        position: relative;
+        z-index: 2;
+      }
+      .testimonial-section .testimonial-author {
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+      .testimonial-section .stars {
+        display: flex;
+        margin-top: 8px;
+        font-size: 1.3rem;
+        color: #ffde59;
+        gap: 2px;
+      }
+      .testimonial-section .navigation-dots {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 15px;
+        position: relative;
+        z-index: 5;
+      }
+      .testimonial-section .nav-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #cbd5e1;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+      .testimonial-section .nav-dot:hover {
+        background-color: #a7b7cc;
+      }
+      .testimonial-section .nav-dot.active {
+        background-color: #4a6fa5;
+        transform: scale(1.1);
+      }
+      .testimonial-section .nav-arrow {
+        position: absolute;
+        top: calc(50% - 10px);
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        font-size: 20px;
+        font-weight: bold;
+        color: #4a6fa5;
+        z-index: 10;
+        transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      }
+      .testimonial-section .nav-arrow:hover {
+        background-color: #eef2f7;
+        transform: translateY(-50%) scale(1.05);
+      }
+      .testimonial-section .nav-arrow.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+      .testimonial-section .nav-prev {
+        left: 5px;
+      }
+      .testimonial-section .nav-next {
+        right: 5px;
+      }
+
+      /* Premium Trial Section */
+      #premium-trial-section {
+        background: 
+        url('https://www.calm.com/_next/image?url=%2F_n%2Fimages%2Fhomepage%2Fblue-wave-bg.webp&w=1920&q=75') center center / cover no-repeat;
+        position: relative;
+        overflow: hidden;
+        padding: 80px 0 40px 0;
+        min-height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #premium-trial-section .premium-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 20px;
+        z-index: 1;
+        margin-bottom: 30vh;
+        text-align: center;
+      }
+      #premium-trial-section .header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      #premium-trial-section .header h1 {
+        font-size: 2.5rem;
+        color: #1d3557;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      #premium-trial-section .subscription-box {
+        background-color: white;
+        border-radius: 12px;
+        border: 1px solid #e0e0e0;
+        width: 100%;
+        max-width: 550px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        position: relative;
+        overflow: hidden;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+      }
+      #premium-trial-section .sub-option {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+      }
+      #premium-trial-section .option-left {
+        display: flex;
+        flex-direction: column;
+      }
+      #premium-trial-section .option-name {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #333;
+      }
+      #premium-trial-section .option-price {
+        font-size: 0.9rem;
+        color: #666;
+      }
+      #premium-trial-section .option-monthly {
+        font-size: 0.9rem;
+        color: #666;
+        text-align: right;
+      }
+      #premium-trial-section .trial-tag {
+        background-color: #6c4fbb;
+        color: white;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        font-weight: 500;
+      }
+      #premium-trial-section .disclaimer {
+        font-size: 0.75rem;
+        color: #666;
+        text-align: center;
+        max-width: 550px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+      #premium-trial-section .terms-links {
+        display: flex;
+        justify-content: center;
+        margin-top: 0.25rem;
+      }
+      #premium-trial-section .terms-links a {
+        color: #666;
+        text-decoration: none;
+        font-size: 0.75rem;
+        margin: 0 0.25rem;
+      }
+      #premium-trial-section .terms-links a:hover {
+        text-decoration: underline;
+      }
+      #premium-trial-section .continue-btn {
+        background: linear-gradient(135deg, #4561c9 0%, #6c4fbb 100%);
+        color: white;
+        border: none;
+        border-radius: 25px;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        width: 100%;
+        max-width: 550px;
+        transition: all 0.3s ease;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #premium-trial-section .continue-btn:hover {
+        opacity: 0.9;
+      }
+      /* Water waves - applies globally at bottom */
+      /* .water-waves {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30vh;
+        z-index: 0;
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2382b5ce' d='M0,160 C300,220 600,100 1200,160 L1200,300 L0,300 Z'%3E%3C/path%3E%3Cpath fill='%2369a8c5' d='M0,180 C400,230 700,120 1200,180 L1200,300 L0,300 Z'%3E%3C/path%3E%3Cpath fill='%23539abe' d='M0,200 C500,250 800,150 1200,200 L1200,300 L0,300 Z'%3E%3C/path%3E%3C/svg%3E")
+          no-repeat bottom;
+        background-size: cover;
+        pointer-events: none;
+      } */
+      #premium-trial-section .separator {
+        display: inline-block;
+        width: 1px;
+        height: 12px;
+        background-color: #666;
+        margin: 0 0.25rem;
+        vertical-align: middle;
+      }
+
+      /* --- NEW: Blog Carousel Section --- */
+      #blog-carousel-section {
+        background-color: #f8f9fa; /* Match other light sections or choose new bg */
+        padding: 60px 0; /* Adjust padding as needed */
+        position: relative; /* Ensure stacking context if needed */
+        z-index: 1; /* Ensure it's above fixed elements like waves if overlapping */
+      }
+      .blog-carousel-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px; /* Padding inside the container */
+        /* Removed font-family to inherit from body */
+      }
+      .blog-carousel-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .blog-carousel-title {
+        color: #2a4562;
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+      }
+      .blog-carousel-cards {
+        display: flex;
+        gap: 20px;
+        overflow-x: hidden; /* Important for JS scroll */
+        position: relative;
+        /* Add padding to allow seeing shadows/edges if needed */
+        padding: 5px;
+        margin-left: -5px; /* Counteract padding */
+        /* Transition handled by JS */
+      }
+      .blog-carousel-card {
+        min-width: calc(33.333% - 14px); /* 3 cards view, adjust for gap */
+        flex-shrink: 0; /* Prevent shrinking */
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out; /* Smooth slide */
+      }
+      .blog-carousel-image {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        display: block; /* Remove extra space below image */
+      }
+      .blog-carousel-content {
+        padding: 20px;
+      }
+      .blog-carousel-category {
+        font-size: 14px;
+        color: #2a4562;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      .blog-carousel-card-title {
+        font-size: 18px;
+        color: #333;
+        margin: 0;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+      .blog-carousel-navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        gap: 10px;
+      }
+      .blog-carousel-view-all {
+        text-decoration: none;
+        color: #2a4562;
+        font-weight: 600;
+        font-size: 16px;
+        margin-right: 20px; /* Space before buttons */
+      }
+      .blog-carousel-view-all:hover {
+        text-decoration: underline;
+      }
+      .blog-carousel-nav-button {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: #f0f0f0;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s, opacity 0.2s;
+      }
+      .blog-carousel-nav-button svg {
+        width: 20px;
+        height: 20px;
+        fill: #999;
+        transition: fill 0.2s;
+      }
+      .blog-carousel-nav-button:hover {
+        background-color: #e0e0e0;
+      }
+      .blog-carousel-nav-button:hover svg {
+        fill: #666;
+      }
+      .blog-carousel-nav-button:disabled {
+        /* Style disabled buttons */
+        opacity: 0.5;
+        cursor: not-allowed;
+        background-color: #f0f0f0; /* Keep base color */
+      }
+      .blog-carousel-nav-button:disabled svg {
+        fill: #bbb; /* Lighter fill */
+      }
+
+      /* Specific card styles */
+      .blog-carousel-pink-card {
+        background-color: #f4b8c4;
+      }
+      .blog-carousel-pink-image {
+        /* Used as placeholder background */
+        width: 100%;
+        height: 240px;
+        display: block;
+        background-color: #e7a7b4; /* Slightly darker pink */
+      }
+      /* --- End Blog Carousel Section Styles --- */
+
+      /* Dummy Content Section */
+      .content {
+        padding: 50px 20px;
+        text-align: center;
+        min-height: 50vh;
+        background-color: #eee;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* --- Responsive Adjustments --- */
+      @media (max-width: 1200px) {
+        /* Adjust testimonial arrow position if container padding changes */
+        .blog-carousel-card {
+          min-width: calc(50% - 10px); /* 2 cards view */
+        }
+      }
+
+      @media (max-width: 1024px) {
+        /* Wellness Section - 2 cards */
+        .wellness-section .card {
+          min-width: calc(50% - 20px);
+          max-width: calc(50% - 20px);
+        }
+        /* Testimonial Section - 2 cards */
+        .testimonial-section .testimonial {
+          width: calc(50% - (25px / 2));
+        }
+        .testimonial-section .heading {
+          font-size: 2.2rem;
+        }
+        .testimonial-section .testimonial-text {
+          font-size: 1.2rem;
+        }
+        /* Premium Trial Section */
+        #premium-trial-section .header h1 {
+          font-size: 2.2rem;
+        }
+        /* Blog Carousel */
+        .blog-carousel-title {
+          font-size: 22px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        /* Navbar */
+        nav,
+        .cta-button-nav {
+          display: none;
+        }
+        .menu-toggle {
+          display: block;
+        }
+        #navbar .container {
+          justify-content: space-between;
+        }
+        /* Calm Mind Section */
+        .calm-mind-section h2 {
+          font-size: 2.2em;
+        }
+        .calm-mind-section p {
+          font-size: 1em;
+        }
+        .cta-button-gradient {
+          padding: 15px 35px;
+          font-size: 1em;
+        }
+        /* Wellness section */
+        .wellness-section h1 {
+          font-size: 2rem;
+          margin-bottom: 40px;
+        }
+        .wellness-section .card {
+          min-width: calc(50% - 15px);
+          max-width: calc(50% - 15px);
+          padding: 15px 10px;
+        }
+        .wellness-section .card h2 {
+          font-size: 1.4rem;
+        }
+        .wellness-section .card p {
+          font-size: 0.95rem;
+        }
+        /* Testimonial Section - 1 card */
+        .testimonial-section .carousel-container {
+          padding: 0 15px;
+        }
+        .testimonial-section .heading {
+          font-size: 2rem;
+          margin-bottom: 40px;
+        }
+        .testimonial-section .testimonial {
+          width: 95%;
+          min-width: 95%;
+        }
+        .testimonial-section .nav-arrow {
+          width: 36px;
+          height: 36px;
+          font-size: 18px;
+          top: calc(50% - 15px);
+        }
+        .testimonial-section .nav-prev {
+          left: -5px;
+        }
+        .testimonial-section .nav-next {
+          right: -5px;
+        }
+        /* Premium Trial Section */
+        #premium-trial-section {
+          padding-top: 60px;
+        }
+        #premium-trial-section .header h1 {
+          font-size: 2rem;
+        }
+        #premium-trial-section .subscription-box {
+          max-width: 90%;
+          padding: 0.8rem;
+        }
+        #premium-trial-section .option-name {
+          font-size: 1.1rem;
+        }
+        #premium-trial-section .continue-btn {
+          padding: 0.9rem 1.8rem;
+          font-size: 0.95rem;
+          max-width: 90%;
+        }
+        #premium-trial-section .disclaimer {
+          font-size: 0.7rem;
+          max-width: 90%;
+        }
+        #premium-trial-section .terms-links a {
+          font-size: 0.7rem;
+        }
+        /* Blog Carousel - 1 card view */
+        .blog-carousel-cards {
+          padding: 5px 10px;
+          margin-left: -10px;
+        } /* Adjust padding for single view */
+        .blog-carousel-card {
+          min-width: calc(100% - 0px); /* Full width card */
+        }
+        .blog-carousel-title {
+          font-size: 20px;
+        }
+        .blog-carousel-navigation {
+          flex-wrap: wrap;
+          justify-content: center;
+        } /* Ensure buttons fit */
+        .blog-carousel-view-all {
+          margin-right: 0;
+          margin-bottom: 15px;
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 576px) {
+        /* Wellness section */
+        .wellness-cards {
+          flex-direction: column;
+          align-items: center;
+          gap: 40px;
+        }
+        .wellness-section .card {
+          min-width: 80%;
+          max-width: 350px;
+        }
+        /* Testimonial Section */
+        .testimonial-section .testimonial {
+          width: 90%;
+        }
+        .testimonial-section .carousel-container {
+          padding: 0 5px;
+        }
+        .testimonial-section .heading {
+          font-size: 1.8rem;
+        }
+        .testimonial-section .testimonial-text {
+          font-size: 1.1rem;
+        }
+        .testimonial-section .nav-arrow {
+          display: none;
+        }
+        /* Premium Trial Section */
+        #premium-trial-section .header h1 {
+          font-size: 1.8rem;
+        }
+        #premium-trial-section .subscription-box {
+          padding: 0.7rem;
+        }
+        #premium-trial-section .sub-option {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 5px;
+        }
+        #premium-trial-section .option-monthly {
+          text-align: left;
+        }
+        #premium-trial-section .trial-tag {
+          font-size: 0.7rem;
+          padding: 0.2rem 0.6rem;
+          top: 0.5rem;
+          right: 0.5rem;
+        }
+        #premium-trial-section .continue-btn {
+          padding: 0.8rem 1.5rem;
+          font-size: 0.9rem;
+        }
+        /* Blog Carousel */
+        .blog-carousel-title {
+          font-size: 18px;
+        }
+        .blog-carousel-card-title {
+          font-size: 16px;
+        }
+        .blog-carousel-content {
+          padding: 15px;
+        }
+        .blog-carousel-image {
+          height: 200px;
+        }
+        .blog-carousel-pink-image {
+          height: 200px;
+        }
+      }
+
+      .faqContainer_calm123 {
+        font-family: "Helvetica Neue", sans-serif;
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 0 20px;
+        color: #1e1e1e;
+      }
+
+      .faqHeader_calm123 {
+        font-size: 28px;
+        font-weight: bold;
+        color: #1e325f;
+        margin-bottom: 30px;
+      }
+
+      .faqSection_calm123 {
+        border-top: 1px solid #dce0e4;
+      }
+
+      .faqItem_calm123 {
+        border-bottom: 1px solid #dce0e4;
+      }
+
+      .faqQuestion_calm123 {
+        font-weight: 600;
+        font-size: 17px;
+        padding: 20px 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #1e1e1e;
+      }
+
+      .faqIcon_calm123 {
+        font-size: 16px;
+        transform: rotate(0deg);
+        transition: transform 0.3s ease;
+      }
+
+      .faqIcon_calm123.open {
+        transform: rotate(180deg);
+      }
+
+      .faqAnswer_calm123 {
+        display: none;
+        padding-bottom: 20px;
+        color: #4b5563;
+        line-height: 1.6;
+        font-size: 15px;
+      }
+
+      .faqAnswer_calm123 a {
+        color: #1e325f;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .faqAnswer_calm123.open {
+        display: block;
+      }
+      .footer_calm456 {
+        background-color: #161f46;
+        color: #d1d5db;
+        padding: 40px 20px 20px;
+        font-family: "Helvetica Neue", sans-serif;
+        font-size: 14px;
+      }
+
+      .footerContent_calm456 {
+        max-width: 900px;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0 auto;
+      }
+
+      .footerColumn_calm456 {
+        flex: 1 1 200px;
+        margin: 20px;
+      }
+
+      .footerColumn_calm456 h4 {
+        color: #ffffff;
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+
+      .footerColumn_calm456 ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footerColumn_calm456 ul li {
+        margin-bottom: 8px;
+      }
+
+      .footerColumn_calm456 ul li a {
+        color: #d1d5db;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .footerColumn_calm456 ul li a:hover {
+        color: #ffffff;
+      }
+
+      .footerSocial_calm456 {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin: 20px;
+      }
+
+      .footerSocial_calm456 a {
+        color: #d1d5db;
+        font-size: 18px;
+        transition: color 0.2s ease;
+      }
+
+      .footerSocial_calm456 a:hover {
+        color: #ffffff;
+      }
+
+      .footerBottom_calm456 {
+        text-align: center;
+        color: #9ca3af;
+        padding-top: 20px;
+        font-size: 13px;
+      }
+
+      .calm-collage-section {
+        width: 100vw;
+        position: relative;
+        min-height: 340px;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        background: none;
+      }
+      .calm-collage-bg {
+        width: 100vw;
+        min-height: 340px;
+        height: 38vw;
+        max-height: 600px;
+        background: 
+          linear-gradient(to bottom, #fff 0%, rgba(255,255,255,0.7) 8%, rgba(255,255,255,0.0) 18%, rgba(255,255,255,0.0) 82%, rgba(255,255,255,0.7) 92%, #fff 100%),
+          url('https://www.calm.com/_next/image?url=%2F_n%2Fimages%2Fhomepage%2Fcontent-tile-collage.webp&w=3840&q=75') center center / cover no-repeat;
+        background-blend-mode: normal;
+        margin: 0;
+        padding: 0;
+      }
+      .carousel-container {
+      position: relative;
+      overflow: hidden;
+      padding: 60px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .carousel-title {
+      text-align: center;
+      font-size: 28px;
+      color: #1f355e;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-left: 15%;
+      gap: 24px;
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .carousel-wrapper::-webkit-scrollbar {
+      display: none; /* Chrome, Safari */
+    }
+
+    .testimonial-card {
+      flex: 0 0 auto;
+      background: linear-gradient(to bottom, #2e7bb4, #5b4ee6);
+      border-radius: 20px;
+      padding: 24px;
+      width: 300px;
+      box-sizing: border-box;
+      color: #fff;
+      position: relative;
+    }
+
+    .testimonial-quote {
+      font-size: 48px;
+      opacity: 0.3;
+      position: absolute;
+      top: 16px;
+      left: 16px;
+    }
+
+    .testimonial-text {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-author {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+
+    .stars {
+      color: gold;
+      font-size: 18px;
+    }
+
+    .carousel-buttons {
+      position: absolute;
+      bottom: 20px;
+      right: 30px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .carousel-button {
+      background-color: #d6dfff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #1f355e;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .carousel-button:hover {
+      background-color: #c0d6ff;
+    }
+    .breath-harmony * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .breath-harmony {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-size: 600% 600%;
+      animation: bh-gradientBG 30s ease infinite;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    @keyframes bh-gradientBG {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
+    }
+
+    .bh-container {
+      width: 90%;
+      max-width: 1200px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1rem;
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .bh-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .bh-container p {
+      text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    .bh-visualization {
+      position: relative;
+      width: 350px;
+      height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem 0;
+    }
+
+    .bh-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+      filter: blur(8px);
+      transform-origin: center;
+      transition: all 0.5s ease;
+    }
+
+    .bh-center-circle {
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+    }
+
+    .bh-timer {
+      font-size: 2rem;
+      font-weight: 200;
+    }
+
+    .bh-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .bh-control-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      min-width: 180px;
+    }
+
+    .bh-control-group label {
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .bh-control-group select,
+    .bh-control-group button {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: none;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .bh-control-group button {
+      background: rgba(255, 255, 255, 0.3);
+      color: white;
+      font-weight: bold;
+    }
+
+    .bh-control-group select:hover {
+      background: rgba(255, 255, 255, 1);
+    }
+
+    .bh-control-group button:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .bh-breathing-text {
+      position: absolute;
+      top: 20px;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .bh-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .bh-particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .bh-container h1 {
+        font-size: 2rem;
+      }
+
+      .bh-visualization {
+        width: 280px;
+        height: 280px;
+      }
+
+      .bh-controls {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .bh-control-group {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="nav-left">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD1A9vW12CDS_PoNTaqCxbUC8u72h9f4FaMS3d79w89dQePwJx1S7xsyk&s"
+          alt="Calm Logo"
+        />
+        <a href="#" class="nav-link">Sleep</a>
+        <a href="#" class="nav-link">Stress & Anxiety</a>
+        <a href="#" class="nav-link">Mindfulness</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="nav-link">Calm Health</a>
+        <a href="#" class="nav-link">Log In</a>
+        <button class="cta-button">Try Calm for Free</button>
+      </div>
+    </nav>
+
+    <section class="hero"></section>
+
+    <section class="calm-mind-section">
+      <div class="content-wrapper">
+        <h2>Calm your mind. Change your life.</h2>
+        <p>
+          Mental health is hard. Getting support doesn't need to be. Our app
+          puts the tools to feel better in your back pocket, with personalized
+          content to manage stress and anxiety, get better sleep, and feel more
+          present in your life. Relax your mind, and wake up as the person you
+          want to be.
+        </p>
+        <a href="#" class="cta-button-gradient">Try Calm for Free</a>
+      </div>
+    </section>
+
+    <section class="wellness-section">
+      <div class="container-wellness">
+        <h1>We're here to help you feel better.</h1>
+        <div class="wellness-cards">
+          <div class="card">
+            <div class="icon stress-icon">
+              <svg
+                width="50"
+                height="50"
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M37.5 18.75L27.5 28.75L22.5 23.75L12.5 33.75"
+                  stroke="#66BBEE"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M31.25 18.75H37.5V25"
+                  stroke="#66BBEE"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M25 37.5C25 37.5 12.5 27.0833 12.5 18.75C12.5 10.4167 19.7917 8.33335 25 12.5C30.2084 8.33335 37.5 10.4167 37.5 18.75C37.5 27.0833 25 37.5 25 37.5Z"
+                  stroke="#66BBEE"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h2>Stress less.</h2>
+            <p>
+              Get in-the-moment relief for stress and anxiety so you can get
+              back to living.
+            </p>
+            <a href="#" class="learn-more">Learn More</a>
+          </div>
+          <div class="card">
+            <div class="icon sleep-icon">
+              <svg
+                width="50"
+                height="50"
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.75 35.4167C27.7542 35.4167 35.4167 27.7542 35.4167 18.75C35.4167 15.3125 34.2708 12.125 32.2917 9.52084C36.7917 12.3958 39.5833 17.1875 39.5833 22.7083C39.5833 31.7125 31.9208 39.375 22.9167 39.375C17.3958 39.375 12.6042 36.5833 9.72916 32.0833C12.3333 34.0625 15.3125 35.4167 18.75 35.4167Z"
+                  stroke="#BB88DD"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M42 8 L44 10 L46 8"
+                  stroke="#BB88DD"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M38 12 L40 14 L42 12"
+                  stroke="#BB88DD"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <h2>Sleep more.</h2>
+            <p>Fall asleep (and stay asleep) naturally and peacefully.</p>
+            <a href="#" class="learn-more">Learn More</a>
+          </div>
+          <div class="card">
+            <div class="icon mindful-icon">
+              <svg
+                width="50"
+                height="50"
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M25 4C16.9 4 11 10.3 11 17.7C11 23.3 14.8 30.7 25 46C35.2 30.7 39 23.3 39 17.7C39 10.3 33.1 4 25 4Z"
+                  stroke="#77CC99"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M25 22C27.7614 22 30 19.7614 30 17C30 14.2386 27.7614 12 25 12C22.2386 12 20 14.2386 20 17C20 19.7614 22.2386 22 25 22Z"
+                  stroke="#77CC99"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M18 28 C 21 32, 29 32, 32 28"
+                  stroke="#77CC99"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                />
+              </svg>
+            </div>
+            <h2>Live mindfully.</h2>
+            <p>
+              Navigate life's ups and downs with resilience, confidence and
+              guided support.
+            </p>
+            <a href="#" class="learn-more">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full-width background image section with smooth white blending -->
+    <section class="calm-collage-section">
+      <div class="calm-collage-bg"></div>
+    </section>
+    <section class="carousel-container">
+      <h2 class="carousel-title">Over 2 million 5-star reviews.</h2>
+      <div class="carousel-wrapper" id="carousel">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">“</div>
+          <div class="testimonial-text">
+            When I cannot fall asleep, I turn on this app and am out within 5 minutes.
+          </div>
+          <div class="testimonial-author">Brandy from Houston</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">“</div>
+          <div class="testimonial-text">
+            I have a very busy brain and can find it hard to unwind. Now a daily practice is actually so wonderful and healing for me.
+          </div>
+          <div class="testimonial-author">John from Chicago</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">“</div>
+          <div class="testimonial-text">
+            Calm has changed my life in immeasurable ways. I am more resilient and feel so much more connected to myself.
+          </div>
+          <div class="testimonial-author">Allison from San Jose</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">“</div>
+          <div class="testimonial-text">
+            Whenever I need to unwind from a stressful work day I meditate with Calm's soundscapes and it sends me to my happy place.
+          </div>
+          <div class="testimonial-author">Jasmine from Bend</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+  
+      <div class="carousel-buttons">
+        <button class="carousel-button" onclick="scrollCarousel(-1)">&lt;</button>
+        <button class="carousel-button" onclick="scrollCarousel(1)">&gt;</button>
+      </div>
+    </section>
+
+    <section id="premium-trial-section">
+      <div class="water-waves"></div>
+      <div class="premium-container">
+        <div class="header">
+          <h1>Start your free trial of<br />Calm Premium.</h1>
+        </div>
+        <div class="subscription-box">
+          <div class="trial-tag">14-Day Free Trial</div>
+          <div class="sub-option">
+            <div class="option-left">
+              <span class="option-name">Yearly</span>
+              <span class="option-price">$49.99/yr.</span>
+            </div>
+            <div class="option-right">
+              <span class="option-monthly">$4.17/mo.</span>
+            </div>
+          </div>
+        </div>
+        <div class="disclaimer">
+          After your free trial, the yearly subscription is $49.99 and
+          automatically renews each year until cancelled.
+          <div class="terms-links">
+            <a href="#">Terms</a> <span class="separator"></span>
+            <a href="#">Cancel anytime</a>
+          </div>
+        </div>
+        <button class="continue-btn">Continue</button>
+      </div>
+    </section>
+    <div class="breath-harmony">
+      <div class="bh-container">
+        <h1>Breath Harmony</h1>
+        <p>Immerse yourself in a personalized breathing visualization. Customize your experience and discover the perfect rhythm for your meditation practice.</p>
+  
+        <div class="bh-visualization">
+          <div class="bh-particles" id="bhParticles"></div>
+          <div class="bh-breathing-text" id="bhBreathingText">Inhale</div>
+          <div class="bh-center-circle">
+            <span class="bh-timer" id="bhTimer">5:00</span>
+          </div>
+        </div>
+  
+        <div class="bh-controls">
+          <div class="bh-control-group">
+            <label for="bhBreathPattern">Breathing Pattern</label>
+            <select id="bhBreathPattern">
+              <option value="478">4-7-8 Relaxation</option>
+              <option value="box">Box Breathing</option>
+              <option value="coherent">Coherent Breathing</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+  
+          <div class="bh-control-group">
+            <label for="bhDuration">Duration</label>
+            <select id="bhDuration">
+              <option value="3">3 minutes</option>
+              <option value="5" selected>5 minutes</option>
+              <option value="10">10 minutes</option>
+              <option value="15">15 minutes</option>
+            </select>
+          </div>
+  
+          <div class="bh-control-group">
+            <label for="bhVisualStyle">Visual Style</label>
+            <select id="bhVisualStyle">
+              <option value="ripple">Ripple</option>
+              <option value="pulse">Pulsing Light</option>
+              <option value="galaxy">Galaxy</option>
+              <option value="particles">Particle Flow</option>
+            </select>
+          </div>
+  
+          <div class="bh-control-group">
+            <button id="bhStartButton">Begin Practice</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section id="blog-carousel-section">
+      <div class="blog-carousel-container">
+        <div class="blog-carousel-header">
+          <h2 class="blog-carousel-title">
+            Check out our blog for more meditation, sleep, stress, and mental
+            health resources.
+          </h2>
+        </div>
+
+        <div class="blog-carousel-cards">
+          <div class="blog-carousel-card">
+            <img
+              src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+              alt="Person reading a book"
+              class="blog-carousel-image"
+            />
+            <div class="blog-carousel-content">
+              <div class="blog-carousel-category">Mental Health</div>
+              <h3 class="blog-carousel-card-title">
+                Are staycations *actually* better than vacations for real rest?
+              </h3>
+            </div>
+          </div>
+          <div class="blog-carousel-card">
+            <img
+              src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+              alt="Person reading a book"
+              class="blog-carousel-image"
+            />
+            <div class="blog-carousel-content">
+              <div class="blog-carousel-category">Mental Health</div>
+              <h3 class="blog-carousel-card-title">
+                Are staycations *actually* better than vacations for real rest?
+              </h3>
+            </div>
+          </div>
+          <div class="blog-carousel-card">
+            <img
+              src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+              alt="Person reading a book"
+              class="blog-carousel-image"
+            />
+            <div class="blog-carousel-content">
+              <div class="blog-carousel-category">Mental Health</div>
+              <h3 class="blog-carousel-card-title">
+                Are staycations *actually* better than vacations for real rest?
+              </h3>
+            </div>
+          </div>
+          <div class="blog-carousel-card">
+            <img
+              src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+              alt="Meditation pose"
+              class="blog-carousel-image"
+            />
+            <div class="blog-carousel-content">
+              <div class="blog-carousel-category">Meditation</div>
+              <h3 class="blog-carousel-card-title">
+                Finding Your Inner Peace: A Beginner's Guide
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-carousel-navigation">
+          <a href="#" class="blog-carousel-view-all">See all blogs</a>
+          <button class="blog-carousel-nav-button" id="blog-prevBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+          </button>
+          <button class="blog-carousel-nav-button" id="blog-nextBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+    <div class="faqContainer_calm123">
+      <div class="faqHeader_calm123">Frequently Asked Questions</div>
+
+      <div class="faqSection_calm123">
+        <div class="faqItem_calm123">
+          <div class="faqQuestion_calm123">
+            What is Calm?
+            <span class="faqIcon_calm123">&#9650;</span>
+          </div>
+          <div class="faqAnswer_calm123 open">
+            Calm is the #1 mental health app designed to help you manage stress,
+            sleep better, and live a happier, healthier life. Our research-based
+            tools help you build life-changing habits to support your mental
+            health. If you're having trouble falling asleep, our 500+
+            <a href="#">Sleep Stories</a>®, soundscapes, and guided
+            <a href="#">sleep meditations</a> can lull you to sleep. If you're
+            spiraling in negative thoughts and need immediate relief, our
+            60-second Breathe Bubble grounds you in the moment and helps your
+            body return to a state of relaxation. If you're overwhelmed at work
+            and need a breather, our
+            <a href="#">stress and burnout specialists</a> can guide you through
+            exercises to help calm your mind. We're here for you whenever or
+            wherever you need us with more content and tools being added
+            monthly.
+          </div>
+        </div>
+
+        <div class="faqItem_calm123">
+          <div class="faqQuestion_calm123">
+            What's included in a Calm subscription?
+            <span class="faqIcon_calm123">&#9660;</span>
+          </div>
+          <div class="faqAnswer_calm123">
+            Your Calm subscription includes unlimited access to our full library
+            of Sleep Stories, meditations, soundscapes, breathing exercises, and
+            exclusive wellness content updated regularly.
+          </div>
+        </div>
+
+        <div class="faqItem_calm123">
+          <div class="faqQuestion_calm123">
+            Where should I get started once I download the app?
+            <span class="faqIcon_calm123">&#9660;</span>
+          </div>
+          <div class="faqAnswer_calm123">
+            Once you download Calm, we recommend starting with the Daily Calm, a
+            short 10-minute mindfulness session to help you build a habit.
+            Explore different sections like Sleep, Meditate, and Music to find
+            what works for you.
+          </div>
+        </div>
+
+        <div class="faqItem_calm123">
+          <div class="faqQuestion_calm123">
+            What devices support the Calm app?
+            <span class="faqIcon_calm123">&#9660;</span>
+          </div>
+          <div class="faqAnswer_calm123">
+            The Calm app is available on iOS, Android, Apple Watch, and can also
+            be accessed on the web via desktop or laptop devices.
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer_calm456">
+      <div class="footerContent_calm456">
+        <div class="footerColumn_calm456">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Meet our Instructor</a></li>
+            <li><a href="#">Calm Science</a></li>
+          </ul>
+        </div>
+        <div class="footerColumn_calm456">
+          <h4>Offers</h4>
+          <ul>
+            <li><a href="#">Buy a Gift</a></li>
+            <li><a href="#">Redeem a Gift</a></li>
+            <li><a href="#">Calm Health</a></li>
+            <li><a href="#">Calm for Organizations</a></li>
+          </ul>
+        </div>
+        <div class="footerColumn_calm456">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">CCPA Notice</a></li>
+            <li><a href="#">Opt Out of Targeted Ads</a></li>
+            <li><a href="#">Cookies</a></li>
+            <li><a href="#">Accessibility Statement</a></li>
+          </ul>
+        </div>
+        <div class="footerSocial_calm456">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footerBottom_calm456">
+        Copyright © 2025 Calm. All rights reserved
+      </div>
+    </footer>
+
+    <script>
+      document
+        .querySelectorAll(".faqQuestion_calm123")
+        .forEach((question, index) => {
+          question.addEventListener("click", () => {
+            const icon = question.querySelector(".faqIcon_calm123");
+            const answer = question.nextElementSibling;
+
+            const isOpen = answer.classList.contains("open");
+
+            // Close all
+            document
+              .querySelectorAll(".faqAnswer_calm123")
+              .forEach((ans) => ans.classList.remove("open"));
+            document
+              .querySelectorAll(".faqIcon_calm123")
+              .forEach((icn) => icn.classList.remove("open"));
+
+            if (!isOpen) {
+              answer.classList.add("open");
+              icon.classList.add("open");
+            }
+          });
+        });
+    </script>
+    <script>
+      // --- Navbar Scroll Effect ---
+      const navbar = document.getElementById("navbar");
+      if (navbar) {
+        const scrollThreshold = 50;
+        function debounce(func, wait = 15, immediate = true) {
+          let timeout;
+          return function () {
+            const context = this,
+              args = arguments;
+            const later = function () {
+              timeout = null;
+              if (!immediate) func.apply(context, args);
+            };
+            const callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+          };
+        }
+        const handleScroll = () => {
+          if (window.scrollY > scrollThreshold) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        };
+        window.addEventListener("scroll", debounce(handleScroll));
+      }
+
+      // --- Navbar Menu Toggle (Example) ---
+      const menuToggle = document.querySelector(".menu-toggle");
+      if (menuToggle) {
+        menuToggle.addEventListener("click", () => {
+          alert("Menu button clicked! (Add mobile menu logic here)");
+        });
+      }
+
+      // --- Testimonial Carousel Logic ---
+      document.addEventListener("DOMContentLoaded", function () {
+        const carouselSection = document.querySelector(".testimonial-section");
+        if (!carouselSection) return;
+
+        const carousel = carouselSection.querySelector(".carousel");
+        const dotsContainer = carouselSection.querySelector(".navigation-dots");
+        const prevBtn = carouselSection.querySelector(".nav-prev");
+        const nextBtn = carouselSection.querySelector(".nav-next");
+        const testimonials = carouselSection.querySelectorAll(".testimonial");
+
+        if (
+          !carousel ||
+          !dotsContainer ||
+          !prevBtn ||
+          !nextBtn ||
+          testimonials.length === 0
+        ) {
+          console.error("Testimonial carousel elements not found");
+          return;
+        }
+
+        let currentIndex = 0;
+        let visibleItems = 3;
+        let totalItems = testimonials.length;
+        let totalPages = 1;
+
+        function updateCarouselLayout() {
+          const containerWidth = carousel.offsetWidth;
+          const windowWidth = window.innerWidth;
+          const gap = 25;
+          if (windowWidth <= 768) visibleItems = 1;
+          else if (windowWidth <= 1024) visibleItems = 2;
+          else visibleItems = 3;
+          let itemWidth =
+            (containerWidth - gap * (visibleItems - 1)) / visibleItems;
+          testimonials.forEach((testimonial) => {
+            testimonial.style.width = `${itemWidth}px`;
+            testimonial.style.flexBasis = `${itemWidth}px`;
+          });
+          totalPages = Math.ceil(totalItems / visibleItems);
+          updateNavigation();
+          goToItem(currentIndex);
+        }
+        function updateNavigation() {
+          dotsContainer.innerHTML = "";
+          for (let i = 0; i < totalPages; i++) {
+            const dot = document.createElement("span");
+            dot.classList.add("nav-dot");
+            dot.dataset.index = i;
+            if (i === Math.floor(currentIndex / visibleItems))
+              dot.classList.add("active");
+            dot.addEventListener("click", () => goToItem(i * visibleItems));
+            dotsContainer.appendChild(dot);
+          }
+          prevBtn.classList.toggle("disabled", currentIndex === 0);
+          nextBtn.classList.toggle(
+            "disabled",
+            currentIndex >= totalItems - visibleItems
+          );
+          dotsContainer.style.display = totalPages <= 1 ? "none" : "flex";
+        }
+        function goToItem(index) {
+          currentIndex = Math.max(
+            0,
+            Math.min(index, totalItems - visibleItems)
+          );
+          if (testimonials[currentIndex]) {
+            carousel.scrollTo({
+              left:
+                testimonials[currentIndex].offsetLeft -
+                (parseFloat(getComputedStyle(carousel).paddingLeft) || 0),
+              behavior: "smooth",
+            });
+          }
+          updateNavigation();
+        }
+        prevBtn.addEventListener("click", () =>
+          goToItem(currentIndex - visibleItems)
+        );
+        nextBtn.addEventListener("click", () =>
+          goToItem(currentIndex + visibleItems)
+        );
+        let resizeTimer;
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(updateCarouselLayout, 250);
+        });
+        updateCarouselLayout();
+        goToItem(0);
+      });
+
+      // --- Premium Trial Button Logic ---
+      const continueBtn = document.querySelector(
+        "#premium-trial-section .continue-btn"
+      );
+      if (continueBtn) {
+        continueBtn.addEventListener("click", function () {
+          alert("Continue button clicked");
+        });
+      }
+
+      // --- NEW: Blog Carousel Logic ---
+      document.addEventListener("DOMContentLoaded", function () {
+        // Scope variables to this specific carousel instance
+        const blogSection = document.getElementById("blog-carousel-section");
+        if (!blogSection) return; // Exit if this section doesn't exist
+
+        const cardsContainer = blogSection.querySelector(
+          ".blog-carousel-cards"
+        );
+        const cards = blogSection.querySelectorAll(".blog-carousel-card");
+        const prevBtn = blogSection.querySelector("#blog-prevBtn"); // Use updated ID
+        const nextBtn = blogSection.querySelector("#blog-nextBtn"); // Use updated ID
+
+        // Check if essential elements exist
+        if (!cardsContainer || cards.length === 0 || !prevBtn || !nextBtn) {
+          console.error(
+            "Blog carousel elements not found within #blog-carousel-section"
+          );
+          return;
+        }
+
+        let currentIndex = 0;
+        let cardsToShow = 3; // Default for desktop
+        const gap = 20; // Defined in CSS
+
+        function updateVisibleCards() {
+          const windowWidth = window.innerWidth;
+          if (windowWidth <= 768) {
+            cardsToShow = 1;
+          } else if (windowWidth <= 1200) {
+            cardsToShow = 2;
+          } else {
+            cardsToShow = 3;
+          }
+        }
+
+        function updateCarousel() {
+          // Calculate the width of a single card including the gap
+          // Use scrollWidth of container and divide by number of items if they are set to flex-basis or width %
+          // Or simpler: get the offsetWidth of the first card. Assumes all cards are same width.
+          const cardWidth = cards[0].offsetWidth;
+          const totalWidthToTranslate = cardWidth + gap;
+          const translateValue = -currentIndex * totalWidthToTranslate;
+
+          // Apply the translation
+          cardsContainer.style.transform = `translateX(${translateValue}px)`;
+
+          // Update button states
+          prevBtn.disabled = currentIndex === 0;
+          nextBtn.disabled = currentIndex >= cards.length - cardsToShow; // Can't scroll past the start of the last visible set
+
+          // Visual feedback is handled by CSS :disabled pseudo-class now
+        }
+
+        prevBtn.addEventListener("click", function () {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+          }
+        });
+
+        nextBtn.addEventListener("click", function () {
+          // Stop scrolling if the last card is already visible
+          if (currentIndex < cards.length - cardsToShow) {
+            currentIndex++;
+            updateCarousel();
+          }
+        });
+
+        // Add transition property via JS (ensures it's applied after initial render)
+        cardsContainer.style.transition = "transform 0.4s ease-in-out";
+
+        // Debounced resize handler specific to blog carousel
+        let blogResizeTimer;
+        window.addEventListener("resize", function () {
+          clearTimeout(blogResizeTimer);
+          blogResizeTimer = setTimeout(() => {
+            updateVisibleCards();
+            // Optional: Reset position or adjust current index intelligently on resize
+            currentIndex = 0; // Simple reset to first item
+            updateCarousel();
+          }, 250);
+        });
+
+        // Initial setup
+        updateVisibleCards(); // Set initial number of visible cards
+        updateCarousel(); // Set initial position and button states
+      }); // End DOMContentLoaded for Blog Carousel
+    </script>
+    <script>
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+    </script>
+      <script>
+        function scrollCarousel(direction) {
+          const carousel = document.getElementById('carousel');
+          const scrollAmount = 320;
+          carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+      </script>
+       <script>
+        const bhTimer = document.getElementById('bhTimer');
+        const bhStartButton = document.getElementById('bhStartButton');
+        const bhBreathPattern = document.getElementById('bhBreathPattern');
+        const bhDuration = document.getElementById('bhDuration');
+        const bhVisualStyle = document.getElementById('bhVisualStyle');
+        const bhBreathingText = document.getElementById('bhBreathingText');
+        const bhParticlesContainer = document.getElementById('bhParticles');
+    
+        let isRunning = false;
+        let remainingTime = 300;
+        let timerInterval;
+        let breathingInterval;
+        let currentPhase = 'inhale';
+        let circles = [];
+        let particles = [];
+    
+        const patterns = {
+          '478': { inhale: 4, hold1: 7, exhale: 8, hold2: 0 },
+          'box': { inhale: 4, hold1: 4, exhale: 4, hold2: 4 },
+          'coherent': { inhale: 5.5, hold1: 0, exhale: 5.5, hold2: 0 },
+          'custom': { inhale: 3, hold1: 1, exhale: 4, hold2: 2 }
+        };
+    
+        function updateTimerDisplay() {
+          const minutes = Math.floor(remainingTime / 60);
+          const seconds = remainingTime % 60;
+          bhTimer.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+    
+        function toggleStart() {
+          if (isRunning) {
+            stopBreathing();
+            bhStartButton.textContent = 'Begin Practice';
+          } else {
+            startBreathing();
+            bhStartButton.textContent = 'End Practice';
+          }
+          isRunning = !isRunning;
+        }
+    
+        function startBreathing() {
+          remainingTime = parseInt(bhDuration.value) * 60;
+          updateTimerDisplay();
+    
+          timerInterval = setInterval(() => {
+            remainingTime--;
+            updateTimerDisplay();
+            if (remainingTime <= 0) {
+              stopBreathing();
+              bhStartButton.textContent = 'Begin Practice';
+              isRunning = false;
+            }
+          }, 1000);
+    
+          currentPhase = 'inhale';
+          runBreathingCycle();
+        }
+    
+        function stopBreathing() {
+          clearInterval(timerInterval);
+          clearTimeout(breathingInterval);
+          bhBreathingText.style.opacity = '0';
+        }
+    
+        function runBreathingCycle() {
+          const pattern = patterns[bhBreathPattern.value];
+    
+          function nextPhase(phase, duration, next) {
+            currentPhase = phase;
+            bhBreathingText.textContent = phase.charAt(0).toUpperCase() + phase.slice(1);
+            bhBreathingText.style.opacity = '1';
+            breathingInterval = setTimeout(() => {
+              bhBreathingText.style.opacity = '0';
+              if (next) next();
+            }, duration * 1000);
+          }
+    
+          const runCycle = () => {
+            nextPhase('inhale', pattern.inhale, () => {
+              nextPhase('hold', pattern.hold1, () => {
+                nextPhase('exhale', pattern.exhale, () => {
+                  nextPhase('hold', pattern.hold2, () => {
+                    if (isRunning) runCycle();
+                  });
+                });
+              });
+            });
+          };
+    
+          runCycle();
+        }
+    
+        bhStartButton.addEventListener('click', toggleStart);
+        bhDuration.addEventListener('change', () => {
+          remainingTime = parseInt(bhDuration.value) * 60;
+          updateTimerDisplay();
+        });
+      </script>
+  </body>
+</html>
